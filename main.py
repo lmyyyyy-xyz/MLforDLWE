@@ -36,7 +36,7 @@ def parse_arguments():
     # 数据参数
     parser.add_argument("--n", type=int, default=256, help="LWE维度")
     parser.add_argument("--q", type=int, default=8380417, help="模数")
-    parser.add_argument("--num-samples", type=int, default=4000000, help="总样本数量")
+    parser.add_argument("--num-samples", type=int, default=400000, help="总样本数量")
     parser.add_argument("--error-std", type=float, default=0.5, help="误差标准差")
     parser.add_argument("--secret-dist", type=str, default="sparse", 
                        choices=["uniform", "binary", "ternary", "sparse"],
