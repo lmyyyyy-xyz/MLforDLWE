@@ -74,7 +74,7 @@ def generate_secret(
     n: int,
     q: int,
     distribution: str = 'uniform',
-    sparse_ratio: float = 0.1
+    sparse_ratio: float = 0.5
 ) -> np.ndarray:
     """
     生成LWE秘密向量
@@ -96,8 +96,8 @@ def generate_secret(
         return np.random.randint(-1, 2, n)
     elif distribution == 'sparse':
         secret = np.zeros(n, dtype=int)
-        # num_nonzero = max(1, int(n * sparse_ratio))
-        num_nonzero = 5
+        num_nonzero = max(1, int(n * sparse_ratio))
+        # num_nonzero = 5
         indices = np.random.choice(n, num_nonzero, replace=False)
         secret[indices] = np.random.randint(1, q, num_nonzero)
         return secret
