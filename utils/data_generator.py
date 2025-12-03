@@ -96,8 +96,8 @@ def generate_secret(
         return np.random.randint(-1, 2, n)
     elif distribution == 'sparse':
         secret = np.zeros(n, dtype=int)
-        num_nonzero = max(1, int(n * sparse_ratio))
-        # num_nonzero = 5
+        #　num_nonzero = max(1, int(n * sparse_ratio))
+        num_nonzero = 10
         indices = np.random.choice(n, num_nonzero, replace=False)
         secret[indices] = np.random.randint(1, q, num_nonzero)
         return secret

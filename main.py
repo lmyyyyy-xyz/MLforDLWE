@@ -59,9 +59,9 @@ def parse_arguments():
     parser.add_argument("--batch-size", type=int, default=32, help="批次大小")
     parser.add_argument("--learning-rate", type=float, default=1e-4, help="学习率")
     parser.add_argument("--weight-decay", type=float, default=1e-4, help="权重衰减")
-    parser.add_argument("--train-ratio", type=float, default=0.7, help="训练集比例")
-    parser.add_argument("--val-ratio", type=float, default=0.15, help="验证集比例")
-    parser.add_argument("--test-ratio", type=float, default=0.15, help="测试集比例")
+    parser.add_argument("--train-ratio", type=float, default=0.6, help="训练集比例")
+    parser.add_argument("--val-ratio", type=float, default=0.2, help="验证集比例")
+    parser.add_argument("--test-ratio", type=float, default=0.2, help="测试集比例")
     
     # 实验设置
     parser.add_argument("--experiment-name", type=str, default="lwe_experiment",
