@@ -44,8 +44,8 @@ from build_and_solve_cilwe import (
 # Edit these arrays for the default batch run. Command-line arguments
 # --levels and --p-values can still override them for one-off experiments.
 
-SECURITY_LEVEL_CANDIDATES = [5]
-P_CANDIDATES = [0.8, 0.9]
+SECURITY_LEVEL_CANDIDATES = [3]
+P_CANDIDATES = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 
 
 @dataclass
