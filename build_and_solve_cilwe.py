@@ -61,13 +61,13 @@ SOLVER_CHOICES = [
     #　"svd",
     #　"qr",
     # "l1_lp",
-    "huber",
-    "cauchy",
+    # "huber",
+    # "cauchy",
     # "gd_mle",
     #"ilp",
-    # "bp",
+    "bp",
     # "greedy_l2",
-    # "greedy_dh",
+    "greedy_dh",
     # "hillclimb",
 ]
 
