@@ -62,7 +62,7 @@ SOLVER_CHOICES = [
     　"qr",
     # "l1_lp",
      "huber",
-     "cauchy",
+     # "cauchy",
      "gd_mle",
     "ilp",
     # "bp",
