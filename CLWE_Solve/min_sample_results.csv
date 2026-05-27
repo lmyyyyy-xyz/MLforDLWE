@@ -1,0 +1,241 @@
+level,p,filter_threshold,solver,min_m,status,success_trials,total_trials,avg_recovered,avg_time,last_m,errors
+2,0.0,39.0,normal_eq,256,success,1,1,1024.0,0.014813125133514404,256,
+2,0.0,39.0,svd,256,success,1,1,1024.0,0.06146615743637085,256,
+2,0.0,39.0,qr,256,success,1,1,1024.0,0.020616888999938965,256,
+2,0.0,39.0,huber,256,success,1,1,1024.0,0.17614774405956268,256,
+2,0.0,39.0,gd_mle,335,success,1,1,1024.0,0.9902517348527908,335,
+2,0.0,39.0,ilp,256,success,1,1,1024.0,0.47817860543727875,256,
+2,0.0,39.0,greedy_l2,427,success,1,1,1024.0,0.2955114096403122,427,
+2,0.0,39.0,hillclimb,256,success,1,1,1024.0,0.0066953301429748535,256,
+2,0.1,39.0,normal_eq,28668,success,1,1,1024.0,0.07098281383514404,28668,
+2,0.1,39.0,svd,28668,success,1,1,1024.0,1.007798209786415,28668,
+2,0.1,39.0,qr,28668,success,1,1,1024.0,2.060893878340721,28668,
+2,0.1,39.0,huber,320,success,1,1,1024.0,0.14364942908287048,320,
+2,0.1,39.0,gd_mle,28668,success,1,1,1024.0,5.459086641669273,28668,
+2,0.1,39.0,ilp,312,success,1,1,1024.0,33.407490849494934,312,
+2,0.1,39.0,greedy_l2,31200,success,1,1,1024.0,1.1770982146263123,31200,
+2,0.1,39.0,hillclimb,28668,success,1,1,1024.0,0.019157037138938904,28668,
+2,0.2,39.0,normal_eq,,not_found,0,1,984.0,0.08299048244953156,100000,
+2,0.2,39.0,svd,,not_found,0,1,984.0,3.2799205780029297,100000,
+2,0.2,39.0,qr,,not_found,0,1,984.0,8.445342049002647,100000,
+2,0.2,39.0,huber,497,success,1,1,1024.0,0.11312073469161987,497,
+2,0.2,39.0,gd_mle,,not_found,0,1,983.0,33.506901666522026,100000,
+2,0.2,39.0,ilp,428,success,1,1,1024.0,134.1910623908043,428,
+2,0.2,39.0,greedy_l2,,not_found,0,1,982.0,2.829836830496788,100000,
+2,0.2,39.0,hillclimb,,not_found,0,1,984.0,0.08645661175251007,100000,
+2,0.3,39.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.3,39.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.3,39.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.3,39.0,huber,675,success,1,1,1024.0,0.17405608296394348,675,
+2,0.3,39.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.3,39.0,ilp,632,success,1,1,1024.0,4.9416385889053345,632,
+2,0.3,39.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.3,39.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.4,39.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.4,39.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.4,39.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.4,39.0,huber,994,success,1,1,1024.0,0.1264546662569046,994,
+2,0.4,39.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.4,39.0,ilp,994,success,1,1,1024.0,9.234305307269096,994,
+2,0.4,39.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.4,39.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.5,39.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.5,39.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.5,39.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.5,39.0,huber,1475,success,1,1,1024.0,0.20293180644512177,1475,
+2,0.5,39.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.5,39.0,ilp,,not_found,0,1,0.0,0.0,100000,skip ILP for m=100000 > ilp_max_m=1500
+2,0.5,39.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.5,39.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.6,39.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.6,39.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.6,39.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.6,39.0,huber,2818,success,1,1,1024.0,0.20709927380084991,2818,
+2,0.6,39.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.6,39.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.5 was not_found for the same level/filter/solver
+2,0.6,39.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.6,39.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.7,39.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.7,39.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.7,39.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.7,39.0,huber,5885,success,1,1,1024.0,0.3470364511013031,5885,
+2,0.7,39.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.7,39.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.5 was not_found for the same level/filter/solver
+2,0.7,39.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.7,39.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.8,39.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.8,39.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.8,39.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.8,39.0,huber,65376,success,1,1,1024.0,1.5866578221321106,65376,
+2,0.8,39.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.8,39.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.5 was not_found for the same level/filter/solver
+2,0.8,39.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.8,39.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.9,39.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.9,39.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.9,39.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.9,39.0,huber,,not_found,0,1,343.0,2.338821768760681,100000,
+2,0.9,39.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.9,39.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.5 was not_found for the same level/filter/solver
+2,0.9,39.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+2,0.9,39.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+3,0.0,49.0,normal_eq,256,success,1,1,1280.0,0.005418255925178528,256,
+3,0.0,49.0,svd,256,success,1,1,1280.0,0.09021355211734772,256,
+3,0.0,49.0,qr,256,success,1,1,1280.0,0.023017272353172302,256,
+3,0.0,49.0,huber,256,success,1,1,1280.0,0.4969562590122223,256,
+3,0.0,49.0,gd_mle,427,success,1,1,1280.0,1.4813824146986008,427,
+3,0.0,49.0,ilp,256,success,1,1,1280.0,0.9908219426870346,256,
+3,0.0,49.0,greedy_l2,513,success,1,1,1280.0,0.5270464718341827,513,
+3,0.0,49.0,hillclimb,256,success,1,1,1280.0,0.012257099151611328,256,
+3,0.1,49.0,normal_eq,,not_found,0,1,1236.0,0.0629761666059494,100000,
+3,0.1,49.0,svd,,not_found,0,1,1236.0,3.95259365439415,100000,
+3,0.1,49.0,qr,,not_found,0,1,1236.0,10.604216814041138,100000,
+3,0.1,49.0,huber,377,success,1,1,1280.0,0.14692644774913788,377,
+3,0.1,49.0,gd_mle,,not_found,0,1,1236.0,54.07041211426258,100000,
+3,0.1,49.0,ilp,377,success,1,1,1280.0,3.838815152645111,377,
+3,0.1,49.0,greedy_l2,,not_found,0,1,1248.0,4.273399233818054,100000,
+3,0.1,49.0,hillclimb,,not_found,0,1,1236.0,0.13091681897640228,100000,
+3,0.2,49.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.2,49.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.2,49.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.2,49.0,huber,520,success,1,1,1280.0,0.19255661964416504,520,
+3,0.2,49.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.2,49.0,ilp,519,success,1,1,1280.0,175.10497392714024,519,
+3,0.2,49.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.2,49.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.3,49.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.3,49.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.3,49.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.3,49.0,huber,780,success,1,1,1280.0,0.2207699716091156,780,
+3,0.3,49.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.3,49.0,ilp,780,success,1,1,1280.0,13.578165709972382,780,
+3,0.3,49.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.3,49.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.4,49.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.4,49.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.4,49.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.4,49.0,huber,1144,success,1,1,1280.0,0.28404535353183746,1144,
+3,0.4,49.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.4,49.0,ilp,,not_found,0,1,0.0,0.0,100000,skip ILP for m=100000 > ilp_max_m=1500
+3,0.4,49.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.4,49.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.5,49.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.5,49.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.5,49.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.5,49.0,huber,1847,success,1,1,1280.0,0.2923961728811264,1847,
+3,0.5,49.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.5,49.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.4 was not_found for the same level/filter/solver
+3,0.5,49.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.5,49.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.6,49.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.6,49.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.6,49.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.6,49.0,huber,4350,success,1,1,1280.0,0.46728140115737915,4350,
+3,0.6,49.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.6,49.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.4 was not_found for the same level/filter/solver
+3,0.6,49.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.6,49.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.7,49.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.7,49.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.7,49.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.7,49.0,huber,,not_found,0,1,1279.0,3.732233688235283,100000,
+3,0.7,49.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.7,49.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.4 was not_found for the same level/filter/solver
+3,0.7,49.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.7,49.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.8,49.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.8,49.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.8,49.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.8,49.0,huber,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.7 was not_found for the same level/filter/solver
+3,0.8,49.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.8,49.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.4 was not_found for the same level/filter/solver
+3,0.8,49.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.8,49.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.9,49.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.9,49.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.9,49.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.9,49.0,huber,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.7 was not_found for the same level/filter/solver
+3,0.9,49.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.9,49.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.4 was not_found for the same level/filter/solver
+3,0.9,49.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+3,0.9,49.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.1 was not_found for the same level/filter/solver
+5,0.0,60.0,normal_eq,256,success,1,1,1792.0,0.00861307978630066,256,
+5,0.0,60.0,svd,256,success,1,1,1792.0,0.11088114976882935,256,
+5,0.0,60.0,qr,256,success,1,1,1792.0,0.03888779878616333,256,
+5,0.0,60.0,huber,256,success,1,1,1792.0,0.6435278654098511,256,
+5,0.0,60.0,gd_mle,344,success,1,1,1792.0,1.7920504063367844,344,
+5,0.0,60.0,ilp,256,success,1,1,1792.0,1.1009242832660675,256,
+5,0.0,60.0,greedy_l2,414,success,1,1,1792.0,0.5918350368738174,414,
+5,0.0,60.0,hillclimb,256,success,1,1,1792.0,0.026975572109222412,256,
+5,0.1,60.0,normal_eq,68768,success,1,1,1792.0,0.16477446258068085,68768,
+5,0.1,60.0,svd,68768,success,1,1,1792.0,3.7442134469747543,68768,
+5,0.1,60.0,qr,68768,success,1,1,1792.0,9.016240417957306,68768,
+5,0.1,60.0,huber,341,success,1,1,1792.0,0.20381027460098267,341,
+5,0.1,60.0,gd_mle,68880,success,1,1,1792.0,29.65814134478569,68880,
+5,0.1,60.0,ilp,341,success,1,1,1792.0,4.138794183731079,341,
+5,0.1,60.0,greedy_l2,68768,success,1,1,1792.0,2.9656448364257812,68768,
+5,0.1,60.0,hillclimb,68768,success,1,1,1792.0,0.1802966594696045,68768,
+5,0.2,60.0,normal_eq,,not_found,0,1,1680.0,0.09269574284553528,100000,
+5,0.2,60.0,svd,,not_found,0,1,1680.0,5.818509951233864,100000,
+5,0.2,60.0,qr,,not_found,0,1,1680.0,14.692940473556519,100000,
+5,0.2,60.0,huber,481,success,1,1,1792.0,0.256111204624176,481,
+5,0.2,60.0,gd_mle,,not_found,0,1,1678.0,72.99545978009701,100000,
+5,0.2,60.0,ilp,481,success,1,1,1792.0,40.771586552262306,481,
+5,0.2,60.0,greedy_l2,,not_found,0,1,1677.0,6.457626476883888,100000,
+5,0.2,60.0,hillclimb,,not_found,0,1,1680.0,0.14750176668167114,100000,
+5,0.3,60.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.3,60.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.3,60.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.3,60.0,huber,665,success,1,1,1792.0,0.3676993101835251,665,
+5,0.3,60.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.3,60.0,ilp,665,success,1,1,1792.0,10.365702986717224,665,
+5,0.3,60.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.3,60.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.4,60.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.4,60.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.4,60.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.4,60.0,huber,991,success,1,1,1792.0,0.4072689861059189,991,
+5,0.4,60.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.4,60.0,ilp,991,success,1,1,1792.0,42.19768659770489,991,
+5,0.4,60.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.4,60.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.5,60.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.5,60.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.5,60.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.5,60.0,huber,1545,success,1,1,1792.0,0.40213553607463837,1545,
+5,0.5,60.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.5,60.0,ilp,,not_found,0,1,0.0,0.0,100000,skip ILP for m=100000 > ilp_max_m=1500
+5,0.5,60.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.5,60.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.6,60.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.6,60.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.6,60.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.6,60.0,huber,2480,success,1,1,1792.0,0.500115767121315,2480,
+5,0.6,60.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.6,60.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.5 was not_found for the same level/filter/solver
+5,0.6,60.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.6,60.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.7,60.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.7,60.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.7,60.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.7,60.0,huber,5793,success,1,1,1792.0,0.7026586383581161,5793,
+5,0.7,60.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.7,60.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.5 was not_found for the same level/filter/solver
+5,0.7,60.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.7,60.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.8,60.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.8,60.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.8,60.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.8,60.0,huber,25227,success,1,1,1792.0,1.8433337211608887,25227,
+5,0.8,60.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.8,60.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.5 was not_found for the same level/filter/solver
+5,0.8,60.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.8,60.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.9,60.0,normal_eq,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.9,60.0,svd,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.9,60.0,qr,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.9,60.0,huber,,not_found,0,1,722.0,5.7078781723976135,100000,
+5,0.9,60.0,gd_mle,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.9,60.0,ilp,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.5 was not_found for the same level/filter/solver
+5,0.9,60.0,greedy_l2,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
+5,0.9,60.0,hillclimb,,skipped_after_lower_p_not_found,0,1,0.0,0.0,100000,lower p=0.2 was not_found for the same level/filter/solver
