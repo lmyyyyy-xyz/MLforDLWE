@@ -18,6 +18,14 @@ from scipy.optimize import linprog, minimize
 from scipy.sparse.linalg import lsqr
 
 try:
+    from sklearn.linear_model import LinearRegression
+except Exception as exc:  # sklearn is only required by the regression-style Cauchy solver
+    LinearRegression = None
+    SKLEARN_IMPORT_ERROR = exc
+else:
+    SKLEARN_IMPORT_ERROR = None
+
+try:
     from scipy.optimize import Bounds, LinearConstraint, milp
 except Exception:  # scipy may be old
     Bounds = None
@@ -79,6 +87,29 @@ def decode_bp_results(results) -> np.ndarray:
         else:
             out.append(int(round(float(dist))))
     return np.asarray(out, dtype=np.int64)
+
+
+def decode_bp_results_with_confidence(results) -> tuple[np.ndarray, np.ndarray]:
+    """Decode PyBP probability vectors and return max-marginal confidence."""
+    raw = results[0] if isinstance(results, tuple) and len(results) == 2 else results
+    values = []
+    confidences = []
+    for dist in raw:
+        if isinstance(dist, (list, tuple, np.ndarray)):
+            arr = np.asarray(dist, dtype=np.float64).reshape(-1)
+            if arr.size == 0:
+                values.append(0)
+                confidences.append(0.0)
+                continue
+            idx = int(np.argmax(arr))
+            total = float(np.sum(arr))
+            conf = float(arr[idx] / total) if total > 0.0 and np.isfinite(total) else 0.0
+            values.append(from_compl(idx, len(arr)))
+            confidences.append(conf)
+        else:
+            values.append(int(round(float(dist))))
+            confidences.append(1.0)
+    return np.asarray(values, dtype=np.int64), np.asarray(confidences, dtype=np.float64)
 
 
 def decode_greedy_guess(guess) -> np.ndarray:
@@ -366,34 +397,84 @@ def solve_huber(A: np.ndarray, b: np.ndarray, eta: int, delta: float) -> np.ndar
     return round_clip(res.x, eta)
 
 
+def _regression_weighted_linear_coefficients(
+    A: np.ndarray,
+    b: np.ndarray,
+    weights: np.ndarray,
+    lr,
+) -> np.ndarray:
+    """Return sklearn LinearRegression(...).coef_ semantics, with a NumPy fallback."""
+    if lr is not None:
+        lr.fit(A, b, sample_weight=weights)
+        return np.asarray(lr.coef_, dtype=np.float64)
+
+    weights = np.asarray(weights, dtype=np.float64).reshape(-1)
+    weights_sum = float(np.sum(weights))
+    if weights_sum <= 0.0 or not np.isfinite(weights_sum):
+        raise RuntimeError("Linear-regression weights became invalid")
+    norm_w = weights / weights_sum
+    x_mean = norm_w @ A
+    y_mean = float(norm_w @ b)
+    sqrt_w = np.sqrt(norm_w)
+    Aw = (A - x_mean) * sqrt_w[:, None]
+    bw = (b - y_mean) * sqrt_w
+    coef, *_ = np.linalg.lstsq(Aw, bw, rcond=None)
+    return np.asarray(coef, dtype=np.float64)
+
+
 def solve_cauchy(
     A: np.ndarray,
     b: np.ndarray,
     eta: int,
-    scale: float,
+    scale: float | None = None,
     max_iter: int = 100,
-    tol: float = 1e-4,
+    convergence_eps: float = 0.01,
+    convergence_min_run: int = 10,
+    true_x: np.ndarray | None = None,
 ) -> np.ndarray:
+    """
+    Cauchy IRLS matching E:\\PythonProject\\regression\\regression.py.
+
+    This intentionally uses sklearn's weighted LinearRegression and the
+    regression prototype's weight update:
+        w_i = 1 / (1 + r_i^2)
+
+    The scale argument is accepted for compatibility with existing CLWE_Solve
+    call sites, but is not used by this regression-style implementation.
+    """
     A = np.asarray(A, dtype=np.float64)
     b = np.asarray(b, dtype=np.float64).reshape(-1)
     m, n = A.shape
-    x = np.zeros(n, dtype=np.float64)
-    last = x.copy()
-    weights = np.ones(m, dtype=np.float64)
-    scale = max(float(scale), 1e-8)
+    lr = LinearRegression(n_jobs=1) if LinearRegression is not None else None
+    weights = np.ones(m, dtype=np.float64) / max(m, 1)
+    beta_est = np.zeros(n, dtype=np.float64)
+    last_estimate = np.zeros(n, dtype=np.float64)
+    true_arr = None if true_x is None else np.asarray(true_x, dtype=np.int64).reshape(-1)
+    convergence_counter = 0
 
     for _ in range(int(max_iter)):
-        sqrt_w = np.sqrt(weights)
-        Aw = A * sqrt_w[:, None]
-        bw = b * sqrt_w
-        x, *_ = np.linalg.lstsq(Aw, bw, rcond=None)
-        x = np.clip(x, -eta, eta)
-        r = A @ x - b
-        weights = 1.0 / (1.0 + (r / scale) ** 2)
-        if np.max(np.abs(x - last)) < tol:
+        beta_est = _regression_weighted_linear_coefficients(A, b, weights, lr)
+
+        residuals = b - A @ beta_est
+        weights = 1.0 / (1.0 + residuals**2)
+        weights_sum = float(np.sum(weights))
+        if weights_sum <= 0.0 or not np.isfinite(weights_sum):
+            raise RuntimeError("Cauchy weights became invalid")
+        weights /= weights_sum
+
+        if true_arr is not None and np.sum(true_arr == np.round(beta_est)) == len(true_arr):
             break
-        last = x.copy()
-    return round_clip(x, eta)
+
+        converged = np.max(beta_est - last_estimate) < convergence_eps
+        if converged:
+            convergence_counter += 1
+        else:
+            convergence_counter = 0
+
+        if convergence_counter >= convergence_min_run:
+            break
+
+    return np.asarray(np.round(beta_est), dtype=np.int64)
 
 
 def solve_gd_mle(
@@ -464,24 +545,61 @@ def solve_ilp(A: np.ndarray, b: np.ndarray, eta: int, time_limit: float | None =
 def secret_prior_for_sparse_eta2(eta: int) -> list[float]:
     if eta == 2:
         # complement order: [0, 1, 2, -2, -1]
-        return [0.70, 0.075, 0.075, 0.075, 0.075]
+        return [0.20, 0.20, 0.20, 0.20, 0.20]
+    if eta == 4:
+        # complement order: [0, 1, 2, 3, 4, -4, -3, -2, -1]
+        return [1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9]
     return [1.0] * (2 * eta + 1)
+     
+
+def _bp_message_size() -> int:
+    cached = getattr(_bp_message_size, "_cached", None)
+    if cached is not None:
+        return int(cached)
+    if PyBP is None:
+        return 2
+    probe = PyBP([[1]], [[(0, 1.0)]])
+    size = len(probe.get_prior())
+    setattr(_bp_message_size, "_cached", int(size))
+    return int(size)
 
 
-def solve_bp(hints: List[Hint], eta: int, *, max_iter: int, threads: int | None, use_sparse_prior: bool) -> np.ndarray:
+def secret_prior_for_eta_message_size(eta: int, sz_msg: int) -> list[float]:
+    """Prior matching the compiled hint_solver complement-message size."""
+    eta = int(eta)
+    sz_msg = int(sz_msg)
+    eps = 1e-6
+    return [1.0 if abs(from_compl(idx, sz_msg)) <= eta else eps for idx in range(sz_msg)]
+
+
+def _required_bp_chk_size(coeffs: list[list[int]], rhs_dists: list[Dist], eta: int) -> int:
+    """Choose a check FFT size large enough for RHS shifts and variable sums."""
+    max_abs = 1
+    eta = int(eta)
+    for row, dist in zip(coeffs, rhs_dists):
+        coeff_bound = int(sum(abs(int(c)) for c in row) * eta)
+        rhs_bound = max((abs(int(value)) for value, _prob in dist), default=0)
+        max_abs = max(max_abs, coeff_bound + rhs_bound + 1)
+    return max(1, int(math.ceil(math.log2(max_abs + 1))))
+
+
+def _make_bp(hints: List[Hint], eta: int, *, threads: int | None, use_sparse_prior: bool):
     if PyBP is None:
         raise RuntimeError(f"PyBP unavailable: {HINT_SOLVER_IMPORT_ERROR!r}")
     coeffs, rhs_dists = zip(*hints)
     coeffs = list(coeffs)
     rhs_dists = list(rhs_dists)
-    prior = secret_prior_for_sparse_eta2(eta) if use_sparse_prior else [1.0] * (2 * eta + 1)
+    sz_msg = _bp_message_size()
+    prior = secret_prior_for_eta_message_size(eta, sz_msg) if use_sparse_prior else [1.0] * sz_msg
+    chk_size = _required_bp_chk_size(coeffs, rhs_dists, eta)
 
     bp = None
     last_exc = None
     for make_bp in (
-        lambda: PyBP(coeffs, rhs_dists, prior),
-        lambda: PyBP(coeffs, rhs_dists),
+        lambda: PyBP(coeffs, rhs_dists, chk_size, prior),
         lambda: PyBP(coeffs, rhs_dists, None, prior),
+        lambda: PyBP(coeffs, rhs_dists, chk_size),
+        lambda: PyBP(coeffs, rhs_dists),
     ):
         try:
             bp = make_bp()
@@ -492,12 +610,127 @@ def solve_bp(hints: List[Hint], eta: int, *, max_iter: int, threads: int | None,
         raise RuntimeError(f"Could not construct PyBP: {last_exc}")
     if threads is not None and hasattr(bp, "set_nthreads"):
         bp.set_nthreads(int(threads))
+    return bp
 
-    x_hat = None
+
+def _run_bp_raw(
+    hints: List[Hint],
+    eta: int,
+    *,
+    max_iter: int,
+    threads: int | None,
+    use_sparse_prior: bool,
+):
+    bp = _make_bp(hints, eta, threads=threads, use_sparse_prior=use_sparse_prior)
+
+    raw_results = None
     for _ in range(int(max_iter)):
         bp.propagate()
-        x_hat = decode_bp_results(bp.get_results())
+        raw_results = bp.get_results()
+    return raw_results
+
+
+def solve_bp(hints: List[Hint], eta: int, *, max_iter: int, threads: int | None, use_sparse_prior: bool) -> np.ndarray:
+    raw_results = _run_bp_raw(
+        hints,
+        eta,
+        max_iter=max_iter,
+        threads=threads,
+        use_sparse_prior=use_sparse_prior,
+    )
+    x_hat = decode_bp_results(raw_results)
     return np.clip(np.asarray(x_hat, dtype=np.int64), -eta, eta)
+
+
+def _reduced_hints_for_fixed_values(
+    hints: List[Hint],
+    active_indices: list[int],
+    fixed_values: dict[int, int],
+) -> List[Hint]:
+    reduced_hints: List[Hint] = []
+    for coeffs, rhs_dist in hints:
+        offset = 0
+        for var_idx, value in fixed_values.items():
+            offset += int(coeffs[var_idx]) * int(value)
+
+        reduced_coeffs = [int(coeffs[idx]) for idx in active_indices]
+        if not any(reduced_coeffs):
+            continue
+
+        shifted_rhs = [(int(rhs) - offset, float(prob)) for rhs, prob in rhs_dist]
+        reduced_hints.append((reduced_coeffs, normalize_dist(shifted_rhs)))
+
+    return reduced_hints
+
+
+def solve_bp_decimation(
+    hints: List[Hint],
+    eta: int,
+    *,
+    max_iter: int,
+    threads: int | None,
+    use_sparse_prior: bool,
+    rounds: int = 8,
+    threshold: float = 0.995,
+    fraction: float = 0.10,
+    min_fix: int = 1,
+) -> np.ndarray:
+    """
+    Belief-propagation decimation.
+
+    Repeatedly run BP, fix high-confidence variables, subtract their
+    contribution from all hints, and rerun BP on the remaining variables.
+    """
+    if not hints:
+        return np.empty(0, dtype=np.int64)
+
+    n = len(hints[0][0])
+    active_indices = list(range(n))
+    fixed_values: dict[int, int] = {}
+    best = np.zeros(n, dtype=np.int64)
+
+    rounds = max(1, int(rounds))
+    threshold = float(threshold)
+    fraction = float(fraction)
+    min_fix = max(1, int(min_fix))
+
+    for _ in range(rounds):
+        if not active_indices:
+            break
+
+        reduced_hints = _reduced_hints_for_fixed_values(hints, active_indices, fixed_values)
+        if not reduced_hints:
+            break
+
+        raw_results = _run_bp_raw(
+            reduced_hints,
+            eta,
+            max_iter=max_iter,
+            threads=threads,
+            use_sparse_prior=use_sparse_prior,
+        )
+        active_guess, confidence = decode_bp_results_with_confidence(raw_results)
+        active_guess = np.clip(active_guess, -eta, eta)
+
+        for local_idx, global_idx in enumerate(active_indices):
+            best[global_idx] = int(active_guess[local_idx])
+
+        eligible = np.where(confidence >= threshold)[0]
+        if eligible.size == 0:
+            break
+
+        order = eligible[np.argsort(-confidence[eligible])]
+        max_to_fix = max(min_fix, int(math.ceil(len(active_indices) * max(0.0, fraction))))
+        selected = order[:max_to_fix]
+
+        for local_idx in selected:
+            global_idx = active_indices[int(local_idx)]
+            fixed_values[global_idx] = int(active_guess[int(local_idx)])
+
+        fixed_set = set(fixed_values)
+        active_indices = [idx for idx in active_indices if idx not in fixed_set]
+
+    return np.clip(best, -eta, eta).astype(np.int64)
 
 
 def solve_greedy_dh(
@@ -1137,8 +1370,7 @@ def solve_instance(solver_name: str, A: np.ndarray, b: np.ndarray, s: np.ndarray
             delta = resolve_huber_delta(args)
             x_hat = solve_huber(A, b, args.eta, delta=delta)
         elif solver_name == "cauchy":
-            scale = resolve_cauchy_scale(args)
-            x_hat = solve_cauchy(A, b, args.eta, scale=scale, max_iter=args.cauchy_iter)
+            x_hat = solve_cauchy(A, b, args.eta, max_iter=args.cauchy_iter, true_x=s)
         elif solver_name == "gd_mle":
             x_hat = solve_gd_mle(A, b, args.eta, max_iter=args.gd_iter, tol=args.gd_tol, use_bounds=not args.gd_no_bounds)
         elif solver_name == "ilp":
@@ -1332,7 +1564,8 @@ def main():
 
     # robust/MLE solver parameters
     parser.add_argument("--huber-delta", type=float, default=0.0, help="<=0 means use distribution-based scale")
-    parser.add_argument("--cauchy-scale", type=float, default=0.0, help="<=0 means use distribution-based scale")
+    parser.add_argument("--cauchy-scale", type=float, default=0.0,
+                        help="accepted for compatibility; ignored by regression-style Cauchy")
     parser.add_argument("--cauchy-iter", type=int, default=100)
     parser.add_argument("--gd-iter", type=int, default=5000)
     parser.add_argument("--gd-tol", type=float, default=1e-5)
@@ -1421,7 +1654,7 @@ def main():
         print(f"max_rhs_support = {args.max_rhs_support}")
     print(f"sigma_eff     = {error_std_from_args(args):.6g}")
     print(f"huber_delta   = {resolve_huber_delta(args):.6g}")
-    print(f"cauchy_scale  = {resolve_cauchy_scale(args):.6g}")
+    print("cauchy_scale  = ignored (regression-style Cauchy)")
     print(f"normal_lam    = {args.normal_lam}")
     print(f"hill_B        = {resolve_hillclimb_error_bound(args):.6g}")
     print()
