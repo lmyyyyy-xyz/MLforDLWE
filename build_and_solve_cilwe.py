@@ -57,18 +57,18 @@ except ModuleNotFoundError:
 
 
 SOLVER_CHOICES = [
-    "normal_eq",
-    "svd",
-    "qr",
-    # l1_lp",
-    "huber",
+    # "normal_eq",
+    # "svd",
+    # "qr",
+    "l1_lp",
+    # "huber",
     # "cauchy",
-    "gd_mle",
-    "ilp",
+    # "gd_mle",
+    # "ilp",
     # "bp",
-    "greedy_l2",
+    # "greedy_l2",
     # "greedy_dh",
-    "hillclimb",
+    # "hillclimb",
 ]
 
 
