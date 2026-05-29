@@ -58,8 +58,8 @@ except ModuleNotFoundError:
 
 SOLVER_CHOICES = [
     "normal_eq",
-    　"svd",
-    　"qr",
+    "svd",
+    "qr",
     # "l1_lp",
      "huber",
      # "cauchy",
@@ -422,7 +422,7 @@ def main() -> int:
     parser.add_argument("--level", type=int, choices=[2, 3, 5], default=2)
     parser.add_argument("--samples", "--m", dest="samples", type=int, default=1000)
     parser.add_argument("--p", type=float, default=0.1, help="concealment/contamination rate")
-    parser.add_argument("--seed", type=int, default=7)
+    parser.add_argument("--seed", type=int, default=8)
     parser.add_argument("--filter-threshold", type=float, default=None)
     parser.add_argument("--method", choices=SOLVER_CHOICES, default="cauchy")
 
